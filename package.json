@@ -1,0 +1,39 @@
+{
+  "name": "clumsy-shippers",
+  "version": "1.0.0",
+  "description": "H.R. Portal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --previx client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianclauzel/clumsy-shippers.git"
+  },
+  "author": "Brian Clauzel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianclauzel/clumsy-shippers/issues"
+  },
+  "homepage": "https://github.com/brianclauzel/clumsy-shippers#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.0",
+    "express": "^4.16.3",
+    "gravatar": "^1.6.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.3",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.2"
+  }
+}
