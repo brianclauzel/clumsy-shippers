@@ -12,7 +12,7 @@ module.exports = function validateRequestInput(data) {
     errors.title = "Title field is required";
   }
 
-  if (!Validator.isLength(data.message, { min: 10, max: 150 })) {
+  if (!Validator.isLength(data.message, { min: 10, max: 300 })) {
     errors.message = "Message must be between 10 and 150";
   }
 

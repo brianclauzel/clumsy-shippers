@@ -51,4 +51,148 @@ router.post(
   }
 );
 
+// GET api/requests/user
+// Get current user info and requests
+// Private route
+router.get(
+  "/user",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Requests.find({ name: req.user.name })
+      .then(request => {
+        if (!request) {
+          errors.norequests = "No current requests";
+          return res.status(400).json(errors);
+        }
+        res.json(request);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// GET api/requests/admin
+// Get current admin info and all requests
+// Private route
+router.get(
+  "/admin",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Requests.find({})
+      .then(request => {
+        if (!request) {
+          errors.norequests = "No current requests";
+          return res.status(400).json(errors);
+        }
+        res.json(request);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// GET api/requests/
+// Get current requests except private
+// Private route
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Requests.find({ private: false })
+      .then(request => {
+        if (!request) {
+          errors.norequests = "No current requests";
+          return res.status(400).json(errors);
+        }
+        res.json(request);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// POST api/requests/comment
+// Post admin comment to a specific request
+// Private route
+router.post(
+  "/comment",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    const comment = req.body.comment;
+    const message = req.body.message;
+
+    Requests.findOneAndUpdate(
+      { message: message },
+      { comment: comment },
+      { new: true }
+    )
+      .then(request => {
+        if (!request) {
+          errors.comment = "No comment";
+          return res.status(400).json(errors);
+        }
+        res.json(request);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// POST api/requests/upvote
+// Post upvote to specific request
+// Private route
+router.post(
+  "/upvote",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    const message = req.body.message;
+    const upvote = +1;
+
+    Requests.findOneAndUpdate(
+      { message: message },
+      { $inc: { votes: 1 } },
+      { new: true }
+    )
+      .then(request => {
+        if (!request) {
+          errors.upvote = "No upvote";
+          return res.status(400).json(errors);
+        }
+        res.json(request);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// POST api/requests/read
+// Post to show that a message has been read
+// Private route
+router.post(
+  "/read",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+    const message = req.body.message;
+    const read = true;
+
+    Requests.findOneAndUpdate(
+      { message: message },
+      { read: read },
+      { new: true }
+    )
+      .then(request => {
+        if (!request) {
+          errors.upvote = "No upvote";
+          return res.status(400).json(errors);
+        }
+        res.json(request);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 module.exports = router;

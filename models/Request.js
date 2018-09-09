@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 // Schema
 const RequestSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "users"
+  },
   name: {
     type: String
   },
@@ -26,10 +30,16 @@ const RequestSchema = new Schema({
     type: Boolean
   },
   votes: {
-    type: Number
+    type: Number,
+    default: 0
   },
-  comments: {
-    type: String
+  read: {
+    type: Boolean,
+    default: false
+  },
+  comment: {
+    type: String,
+    default: "No Comment"
   },
   date: {
     type: Date,
