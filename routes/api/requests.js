@@ -36,7 +36,9 @@ router.post(
         return res.status(400).json(errors);
       } else {
         const newRequest = new Requests({
+          user: req.user.id,
           name: req.user.name,
+          email: req.user.email,
           type: req.body.type,
           title: req.body.title,
           message: req.body.message,
@@ -61,6 +63,7 @@ router.get(
     const errors = {};
 
     Requests.find({ name: req.user.name })
+      .sort({ date: -1 })
       .then(request => {
         if (!request) {
           errors.norequests = "No current requests";
@@ -192,6 +195,31 @@ router.post(
         res.json(request);
       })
       .catch(err => res.status(404).json(err));
+  }
+);
+
+// DELETE api/requests/:id
+// DELETE specific user requests
+// Private route
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Requests.findOne({ user: req.user.id }).then(request => {
+      Request.findById(req.params.id)
+        .then(req => {
+          // Check for request owner
+          if (req.user.toString() !== req.user.id) {
+            return res.status(401).json({
+              notauthorized: "User Not Authorized"
+            });
+          }
+          Requests.remove().then(() => res.json({ success: true }));
+        })
+        .catch(err => res.status(404).json(err));
+    });
   }
 );
 
