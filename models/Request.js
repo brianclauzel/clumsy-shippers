@@ -10,10 +10,6 @@ const RequestSchema = new Schema({
   name: {
     type: String
   },
-  type: {
-    type: String,
-    required: true
-  },
   title: {
     type: String,
     required: true
@@ -25,9 +21,6 @@ const RequestSchema = new Schema({
   department: {
     type: String,
     required: true
-  },
-  private: {
-    type: Boolean
   },
   votes: {
     type: Number,

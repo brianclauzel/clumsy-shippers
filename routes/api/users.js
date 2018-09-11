@@ -64,7 +64,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-// GET api/users/login
+// POST api/users/login
 // Login user / return token
 // Public route
 router.post("/login", (req, res) => {

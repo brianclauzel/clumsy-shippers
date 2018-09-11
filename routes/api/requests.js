@@ -16,9 +16,9 @@ const Request = require("../../models/Request");
 // public route
 router.get("/test", (req, res) => res.send("request works"));
 
-// GET api/request/feedback
-// Tests request route
-// public route
+// POST api/request/feedback
+// posts request route
+// private route
 router.post(
   "/feedback",
   passport.authenticate("jwt", { session: false }),
@@ -39,7 +39,6 @@ router.post(
           user: req.user.id,
           name: req.user.name,
           email: req.user.email,
-          type: req.body.type,
           title: req.body.title,
           message: req.body.message,
           department: req.body.department
