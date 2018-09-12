@@ -36,6 +36,14 @@ class Dashboard extends Component {
   }
 
   render() {
+    var divStyleFooter = {
+      marginBottom: "400px"
+    };
+
+    var divStyleForm = {
+      marginTop: "100px"
+    };
+
     const { user } = this.props.auth;
     const { request, loading } = this.props.request;
 
@@ -59,7 +67,11 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
             <p>You have not yet added any requests.</p>
-            <Link to="/create-request" className="btn btn-lg btn-info">
+            <Link
+              to="/create-request"
+              style={divStyleFooter}
+              className="btn btn-lg btn-info"
+            >
               Create Request
             </Link>
           </div>
@@ -72,7 +84,9 @@ class Dashboard extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="display-4">Dashboard</h1>
+              <h1 className="display-4" style={divStyleForm}>
+                Dashboard
+              </h1>
               {dashboardContent}
             </div>
             {this.state.requests.map(req => (

@@ -26,7 +26,7 @@ class Landing extends Component {
             <div className="row">
               <div className="col-md-12 text-center">
                 <h1 className="display-3 mb-4" style={divStyleForm}>
-                  Clumsy Shippers H.R. Portal
+                  Clumsy Shipping H.R. Portal
                 </h1>
                 <p className="lead">
                   {" "}

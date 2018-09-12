@@ -104,7 +104,8 @@ router.get(
   (req, res) => {
     const errors = {};
 
-    Requests.find({ private: false })
+    Requests.find({})
+      .sort({ votes: -1 })
       .then(request => {
         if (!request) {
           errors.norequests = "No current requests";
@@ -154,11 +155,7 @@ router.post(
     const message = req.body.message;
     const upvote = +1;
 
-    Requests.findOneAndUpdate(
-      { message: message },
-      { $inc: { votes: 1 } },
-      { new: true }
-    )
+    Requests.findOneAndUpdate({ id: id }, { $inc: { votes: 1 } }, { new: true })
       .then(request => {
         if (!request) {
           errors.upvote = "No upvote";
