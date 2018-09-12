@@ -17,6 +17,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateRequest from "./components/create/CreateRequest";
+import Requests from "./components/requests/Requests";
 
 import "./App.css";
 
@@ -52,6 +53,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/feedback" component={Requests} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

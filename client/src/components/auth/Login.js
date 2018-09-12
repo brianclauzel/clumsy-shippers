@@ -48,12 +48,22 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
 
+    var divStyleFooter = {
+      marginBottom: "300px"
+    };
+
+    var divStyleForm = {
+      marginTop: "100px"
+    };
+
     return (
       <div className="login">
-        <div className="container">
+        <div className="container mb-4 mt-4">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Log In</h1>
+              <h1 className="display-4 text-center" style={divStyleForm}>
+                Log In
+              </h1>
               <p className="lead text-center">Sign in to your account</p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -72,7 +82,11 @@ class Login extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  style={divStyleFooter}
+                />
               </form>
             </div>
           </div>

@@ -11,13 +11,23 @@ class Landing extends Component {
   }
 
   render() {
+    var divStyleFooter = {
+      marginBottom: "300px"
+    };
+
+    var divStyleForm = {
+      marginTop: "100px"
+    };
+
     return (
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Clumsy Shippers H.R. Portal</h1>
+                <h1 className="display-3 mb-4" style={divStyleForm}>
+                  Clumsy Shippers H.R. Portal
+                </h1>
                 <p className="lead">
                   {" "}
                   Sign up to give feedback directly to Human Resources, monitor

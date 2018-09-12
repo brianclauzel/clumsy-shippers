@@ -51,6 +51,14 @@ class Register extends Component {
   };
 
   render() {
+    var divStyleFooter = {
+      marginBottom: "100px"
+    };
+
+    var divStyleForm = {
+      marginTop: "70px"
+    };
+
     const { errors } = this.state;
 
     return (
@@ -58,7 +66,9 @@ class Register extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Sign Up</h1>
+              <h1 className="display-4 text-center" style={divStyleForm}>
+                Sign Up
+              </h1>
               <p className="lead text-center">Create your account</p>
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -109,7 +119,11 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.department}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  style={divStyleFooter}
+                />
               </form>
             </div>
           </div>

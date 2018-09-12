@@ -1,5 +1,6 @@
 import {
   GET_REQUEST,
+  GET_REQUESTS,
   REQUEST_LOADING,
   CLEAR_CURRENT_REQUEST
 } from "../actions/types";
@@ -27,6 +28,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         request: null
+      };
+    case GET_REQUESTS:
+      return {
+        ...state,
+        requests: action.payload,
+        loading: false
       };
     default:
       return state;

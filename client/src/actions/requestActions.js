@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   GET_REQUEST,
+  GET_REQUESTS,
   REQUEST_LOADING,
   CLEAR_CURRENT_REQUEST,
   GET_ERRORS
@@ -22,6 +23,25 @@ export const getCurrentRequest = () => dispatch => {
       dispatch({
         type: GET_REQUEST,
         payload: {}
+      })
+    );
+};
+
+// Get all requests
+export const getRequests = () => dispatch => {
+  dispatch(setRequestLoading());
+  axios
+    .get("/api/requests/")
+    .then(res =>
+      dispatch({
+        type: GET_REQUESTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_REQUESTS,
+        payload: err.response.data
       })
     );
 };

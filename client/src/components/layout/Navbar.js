@@ -15,11 +15,47 @@ class Navbar extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
+    const isAdmin = (
+      <ul className="navbar-nav ml-auto">
+        <li className="nav-item">
+          <Link className="nav-link" to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/admin">
+            Admin
+          </Link>
+        </li>
+        <li className="nav-item">
+          <a
+            href=""
+            onClick={this.onLogoutClick.bind(this)}
+            className="nav-link"
+          >
+            <img
+              src={user.avatar}
+              className="rounded-circle"
+              alt={user.name}
+              style={{ width: "25px", marginRight: "5px" }}
+              title="You must a Gravatar connected to your email to display an image"
+            />
+            Logout
+          </a>
+        </li>
+      </ul>
+    );
+
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
             Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/create-request">
+            New-Idea
           </Link>
         </li>
         <li className="nav-item">
@@ -74,9 +110,9 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/requests">
+                <Link className="nav-link" to="/feedback">
                   {" "}
-                  Requests
+                  All-Ideas
                 </Link>
               </li>
             </ul>

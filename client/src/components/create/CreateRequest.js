@@ -88,14 +88,26 @@ class CreateRequest extends Component {
       }
     ];
 
+    var divStyleFooter = {
+      marginBottom: "80px"
+    };
+
+    var divStyleForm = {
+      marginTop: "50px"
+    };
+
     return (
       <div className="create-request">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center mb-4">
-                Create Your Request
+              <h1 className="display-4 text-center mb-4" style={divStyleForm}>
+                Send Us Your Thoughts and Ideas
               </h1>
+              <h5 className="text-center mb-4">
+                We appraciate all your messages and will respond as quickly as
+                possible.
+              </h5>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="* Name"
@@ -133,7 +145,11 @@ class CreateRequest extends Component {
                   error={errors.message}
                   info="Send us your ideas and feedback!"
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  style={divStyleFooter}
+                />
               </form>
             </div>
           </div>

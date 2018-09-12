@@ -4,10 +4,35 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentRequest } from "../../actions/requestActions";
 import Spinner from "../common/Spinner";
+import RequestTables from "./RequestTables";
+import axios from "axios";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      vote: "",
+      name: "",
+      comment: "",
+      message: "",
+      department: "",
+      title: "",
+      read: "",
+      date: "",
+      admin: "",
+      user: false,
+      requests: []
+    };
+  }
+
   componentDidMount() {
     this.props.getCurrentRequest();
+
+    axios.get("/api/requests/user").then(res => {
+      this.setState({ requests: res.data });
+    });
+
+    this.setState({ user: this.props.user });
   }
 
   render() {
@@ -22,7 +47,7 @@ class Dashboard extends Component {
       // Check if logged in user has request data
       if (Object.keys(request).length > 0) {
         dashboardContent = (
-          <div>
+          <div className="pb-4">
             <p className="lead text-muted">
               Welcome <Link to={`/user/${user.id}`}>{user.name}</Link>
             </p>
@@ -50,6 +75,19 @@ class Dashboard extends Component {
               <h1 className="display-4">Dashboard</h1>
               {dashboardContent}
             </div>
+            {this.state.requests.map(req => (
+              <RequestTables
+                key={req.id}
+                name={req.name}
+                title={req.title}
+                comment={req.comment}
+                message={req.message}
+                department={req.department}
+                read={req.read.toString()}
+                votes={req.votes}
+                date={req.date}
+              />
+            ))}
           </div>
         </div>
       </div>
