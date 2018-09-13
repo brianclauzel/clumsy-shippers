@@ -6,12 +6,15 @@ import Moment from "react-moment";
 import { userInfo } from "os";
 
 export default props => {
+  var divStyleFooter = {
+    marginBottom: "200px"
+  };
   return (
     <div className="table-responsive mb-4">
       <h4 className="mb-4">
         <u>{props.title}</u>
       </h4>
-      <table className="table table-hover">
+      <table className="table table-hover" style={divStyleFooter}>
         <thead>
           <tr>
             <th scope="col2">Votes</th>

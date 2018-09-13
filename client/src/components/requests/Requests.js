@@ -54,6 +54,7 @@ class Requests extends Component {
                   name={message.name}
                   comment={message.comment}
                   title={message.title}
+                  message={message.message}
                   department={message.department}
                   read={message.read.toString()}
                   date={message.date}

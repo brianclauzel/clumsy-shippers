@@ -37,11 +37,11 @@ class Dashboard extends Component {
 
   render() {
     var divStyleFooter = {
-      marginBottom: "400px"
+      marginBottom: "700px"
     };
 
     var divStyleForm = {
-      marginTop: "100px"
+      marginTop: "150px"
     };
 
     const { user } = this.props.auth;
@@ -66,13 +66,20 @@ class Dashboard extends Component {
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet added any requests.</p>
+            <p>You have not yet added any messages.</p>
             <Link
               to="/create-request"
               style={divStyleFooter}
               className="btn btn-lg btn-info"
             >
-              Create Request
+              Create Message
+            </Link>
+            <Link
+              to="/feedback"
+              style={divStyleFooter}
+              className="btn btn-lg btn-info ml-2"
+            >
+              View All Messages
             </Link>
           </div>
         );

@@ -89,7 +89,7 @@ class CreateRequest extends Component {
     ];
 
     var divStyleFooter = {
-      marginBottom: "80px"
+      marginBottom: "110px"
     };
 
     var divStyleForm = {
@@ -109,14 +109,6 @@ class CreateRequest extends Component {
                 possible.
               </h5>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="* Name"
-                  name="name"
-                  type="name"
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  error={errors.name}
-                />
                 <TextFieldGroup
                   placeholder="* Title"
                   name="title"
